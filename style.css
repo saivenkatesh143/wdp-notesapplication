@@ -1,0 +1,140 @@
+*{
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+    padding-top: 70px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+h2,h3{
+    text-align: center;
+    padding-bottom: 30px;
+}
+.data{
+    text-align: center;
+}
+.data1{
+    text-align: center;
+    padding-bottom: 30px;
+}
+.highlight,.highlight1{
+    text-align:center;
+}
+.Homepage{
+    background-image: url("images/note5.jpg");
+    background-size:cover;
+}
+.images{
+      display:block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+    padding-top: 50px;
+}
+input[type=text],input[type=password],input[type=email]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background:#f1f1f1;
+    font-size:medium;
+    margin-bottom: 2rem;
+    display: flow-root;
+}
+.container {
+    padding: 16px;
+    background-color: white;
+  }
+  .submit-button,.Loginhome{
+    
+    background-color: #04AA6D;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: medium;
+    margin: 8px 0;
+    display:flow-root;
+    margin-top: 3rem;
+
+  }
+  .allforms{
+    color:green;
+    background-color:azure;
+    width: 25%;
+    padding: 16px 20px;
+    font-size:large;
+    margin: 8px 0;
+    margin-left: 280px;
+
+
+  }
+  .loginimages{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+
+  }
+  label{
+    font-size: larger;
+  }
+  .noteh2{
+    padding: 0%;
+    padding-top: 0%;
+  }
+  .newaccount{
+    font-size: large;
+  }
+.newtext{
+  width: 1000px;
+  padding: 50px;
+
+}
+.highlighttext{
+
+  color:red;
+  width: auto;
+  font-size:larger
+}
+.footername{
+  background-color:burlywood;
+  font-size: large;
+}
+.container{
+  display:flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.photo {
+  max-width: 500px;
+  margin: 20px;
+  
+}
+
+.photo img {
+  width: 500px;
+  height: 470px;
+}
+
+.container h1{
+  color:lightseagreen;
+}
+.container p{
+  background-color:black;
+  color: white;
+}
+.notenavigation a {
+  text-decoration: none;
+  font-size: large;
+}
+.notenavigation{
+  margin: 10px;
+  font-size: large;
+}

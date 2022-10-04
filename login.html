@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/note1.jpg">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+
+</head>
+<body>
+    <img src="images/note1.jpg" alt="The image of notes" class="loginimages">
+    <h1>Login</h1>
+    <form>
+
+    <label for="email">Email Address</label>
+    <input type="email"placeholder="Enter the email addreess" name="email" id="email" required>
+    <label for="Password">Password</label>
+    <input type="password" placeholder="Enter the password"name="password" id="passoword" required>
+    <a href="register.html" class="newaccount">Create New Account</a>
+    <button type="button" class="submit-button" onclick="notepage()">Login</button>
+    <script>
+        function notepage(){
+            window.location.href="note.html";
+        }
+    </script>
+    </form>
+    
+</body>
+</html>
