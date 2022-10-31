@@ -2,7 +2,7 @@ class Registration{
 
     constructor(firstname, lastname, email, password, Rpassword,textnote){
         this.fname=firstname;
-        this.lname=lastname;
+        this.lname=lastname; 
         this.emailid=email;
         this.pwd=password;
         this.pwd1=Rpassword;
