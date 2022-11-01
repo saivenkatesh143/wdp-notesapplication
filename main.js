@@ -49,27 +49,6 @@ class Registration{
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const registration=document.getElementById("note-form");
 if(registration) registration.addEventListener('submit',clearregister)
 function clearregister(e){
@@ -87,12 +66,6 @@ function clearregister(e){
 
 
     registration.reset();
-}
-
-
-
-
-
 
 const loginform=document.getElementById("login-form");
 if(loginform) loginform.addEventListener('submit',clearregister1)
