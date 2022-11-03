@@ -1,7 +1,6 @@
 class Registration{
-
     constructor(firstname, lastname, email, password, Rpassword,textnote){
-        this.fname=firstname;
+        this.firname=firstname;
         this.lname=lastname; 
         this.emailid=email;
         this.pwd=password;
@@ -9,7 +8,7 @@ class Registration{
         this.textnotes=textnote;
     }
     getFname(){
-        return this.fname;
+        return this.firname;
     }
     getLname(){
         return this.lname;
@@ -28,7 +27,7 @@ class Registration{
     }
 
     setFname(firstname){
-        this.fname=firstname;
+        this.firname=firstname;
     }
 
     setLname(lastname){
@@ -49,6 +48,11 @@ class Registration{
     }
 }
 
+
+
+
+
+
 const registration=document.getElementById("note-form");
 if(registration) registration.addEventListener('submit',clearregister)
 function clearregister(e){
@@ -58,41 +62,34 @@ function clearregister(e){
     let emailids=document.getElementById('emailid').value;
     let passwrd=document.getElementById('pwd').value;
     let Repasswrd=document.getElementById('pwd1').value;
-    console.log(`${firname}`)
-    console.log(`${lasname}`)
-    console.log(`${emailids}`)
-    console.log(`${passwrd}`)
-    console.log(`${Repasswrd}`)
+    
+    
+const registration1=new Registration(firname,lasname,emailids,passwrd,Repasswrd)
+  console.log(`${firname}`)
+  console.log(`${lasname}`)
+  console.log(`${emailids}`)
+  console.log(`${passwrd}`)
+  console.log(`${Repasswrd}`)
+}
 
-
-    registration.reset();
 
 const loginform=document.getElementById("login-form");
 if(loginform) loginform.addEventListener('submit',clearregister1)
 function clearregister1(e){
     e.preventDefault();
-    let emailids1=document.getElementById('emailid').value;
-    let passwrd1=document.getElementById('pwd').value;
-    console.log(`${emailids1}`)
-    console.log(`${passwrd1}`)
-
-    loginform.reset();
+    let emailids=document.getElementById('emailid').value;
+    let passwrd=document.getElementById('pwd').value;
+    
+    const registration1=new Registration(emailids,passwrd)
+    console.log(`${emailids}`)
+    console.log(`${passwrd}`)
 }
 
-
-const noteform=document.getElementById("note-form1");
-if(noteform) noteform.addEventListener('submit',clearregister2)
+const notedata=document.getElementById("note-form1");
+if(notedata) notedata.addEventListener('submit',clearregister2)
 function clearregister2(e){
     e.preventDefault();
-    let notefield1=document.getElementById('textnotes').value;
-    console.log(`${notefield1}`)
-
-    noteform.reset();
+    let textdata=document.getElementById('textnotes').value;
+    const registration1=new Registration(textdata)
+    console.log(`${textdata}`)
 }
-
-
-
-
-
-
-
