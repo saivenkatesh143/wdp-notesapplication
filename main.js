@@ -65,11 +65,11 @@ function clearregister(e){
     
     
 const registration1=new Registration(firname,lasname,emailids,passwrd,Repasswrd)
-  console.log(`${firname}`)
-  console.log(`${lasname}`)
-  console.log(`${emailids}`)
-  console.log(`${passwrd}`)
-  console.log(`${Repasswrd}`)
+console.log(`${firname}`)
+console.log(`${lasname}`)
+console.log(`${emailids}`)
+console.log(`${passwrd}`)
+console.log(`${Repasswrd}`)
 }
 
 
@@ -80,7 +80,7 @@ function clearregister1(e){
     let emailids=document.getElementById('emailid').value;
     let passwrd=document.getElementById('pwd').value;
     
-    const registration1=new Registration(emailids,passwrd)
+    const registration2=new Registration(emailids,passwrd)
     console.log(`${emailids}`)
     console.log(`${passwrd}`)
 }
