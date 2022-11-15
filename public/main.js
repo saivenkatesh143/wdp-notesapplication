@@ -1,3 +1,17 @@
+// getUsers button 
+let ptn=document.getElementById("btn-users")
+if(ptn) ptn.addEventListener('click', getUsers)
+
+function getUsers() {
+      fetch("http://localhost:3000/users/")
+  .then((res)=> res.json())
+  .then((data) => console.log(data))
+  .catch((err)=> console.log(err))
+}
+
+
+
+
 class Registration{
     constructor(firstname, lastname, email, password, Rpassword,textnote){
         this.firname=firstname;
@@ -70,6 +84,9 @@ console.log(`${lasname}`)
 console.log(`${emailids}`)
 console.log(`${passwrd}`)
 console.log(`${Repasswrd}`)
+console.log(registration1)
+
+
 }
 
 
@@ -93,3 +110,4 @@ function clearregister2(e){
     const registration1=new Registration(textdata)
     console.log(`${textdata}`)
 }
+
