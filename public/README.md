@@ -7,4 +7,4 @@
 
 ## **The implementation is InProgress**
 
-![note application!](/public/images/alert.jpg)
+![note application!](/public/images/alert.jpg "notes")
