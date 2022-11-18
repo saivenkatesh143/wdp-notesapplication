@@ -16,15 +16,19 @@ const users = [
   ];
   
   function getAllUsers() {
-    return users;
+    return users; 
   }
   
   function login(user) { // {userName: "sda", password: "gsdhjsga"}
     let cUser = users.filter( u => u.emailid === user.emailid);
     if(!cUser[0]) throw Error("email id not found");
-    if(cUser[0].password !== user.password) throw Error("Password incorrect");
+    if(cUser[0].pwd !== user.pwd) throw Error("Password incorrect");
   
     return cUser[0];
   }
   
   module.exports = { getAllUsers, login };
+
+
+
+ 
