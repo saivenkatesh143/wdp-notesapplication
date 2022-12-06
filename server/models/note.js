@@ -27,7 +27,7 @@ createTable();
 async function getallnotes() {
   const sql = `SELECT * FROM notes;`;
   let notes = await con.query(sql);
-  //console.log(notes)
+  console.log(notes)
 } 
 
 getallnotes();

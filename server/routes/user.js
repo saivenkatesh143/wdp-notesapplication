@@ -17,10 +17,9 @@ router
       let user = await User.login(req.body);
       res.send({...user, password: undefined})
     } catch(err) {
-      res.status(401).send({message: err.message})
+      res.status(401).send({message: err.message});
     }
   })
-
 
   .post('/register', async (req, res) => {
     try {
@@ -30,7 +29,8 @@ router
       res.status(401).send({message: err.message});
     }
   })
-  .put('/edit', async (req, res) => {
+
+  .put('/editUser', async (req, res) => {
     try {
       let user = await User.editUser(req.body);
       res.send({...user, password: undefined});
@@ -39,7 +39,7 @@ router
     }
   })
 
-  .delete('/delete', async (req, res) => {
+  .delete('/deleteUser', async (req, res) => {
     try {
       User.deleteUser(req.body);
       res.send({success: "We'll Miss You... :("})
@@ -48,12 +48,4 @@ router
     }
   })
 
-
-  
-
-  
-
-  module.exports = router;
-  
-
-  
+module.exports = router;

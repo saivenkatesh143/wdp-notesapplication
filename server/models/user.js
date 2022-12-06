@@ -122,7 +122,7 @@ async function getUser(user) {
 }
 
 
-module.exports = { getAllUsers, login, register};
+module.exports = { getAllUsers, login, register,deleteUser,editUser};
 
 
  
