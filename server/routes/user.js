@@ -3,7 +3,7 @@ const User = require('../models/user');
 const router = express.Router();
 
 router
-  .get('/', async (req, res) => {
+  .get('/getAllUsers', async (req, res) => {
     try {
       const users = await User.getAllUsers();
       res.send(users);
@@ -29,7 +29,6 @@ router
       res.status(401).send({message: err.message});
     }
   })
-
   .put('/editUser', async (req, res) => {
     try {
       let user = await User.editUser(req.body);
@@ -48,4 +47,4 @@ router
     }
   })
 
-module.exports = router;
+module.exports=router;

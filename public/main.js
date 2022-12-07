@@ -149,3 +149,6 @@ function clearregister2(e){
     console.log(`${textdata}`)
 }
 
+function setCurrentUser(user){
+    localStorage.setItem('user',json.stringify(user));
+}

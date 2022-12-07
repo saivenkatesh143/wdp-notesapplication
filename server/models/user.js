@@ -11,7 +11,7 @@ const users = [
       
     },
     {
-      firtsname:"sai venkatesh",
+      firstname:"sai venkatesh",
       lastname:"sure",
       emailid: "saivenkateshsure2@gmail.com",
        pwd: "sudharani2"
@@ -37,14 +37,15 @@ createTable();
 
 async function register(user) {
   let cUser = await getUser(user.emailid);
-
-  if(cUser.length > 0) throw error("email already in use");
+  if(cUser.length > 0) throw Error("email already in use");
 
   const sql = `INSERT INTO users (firstname,lastname,emailid, pwd)
     VALUES ("${user.firstname}", "${user.lastname}","${user.emailid}","${user.pwd}");
   `
   await con.query(sql);
-  return await login(user);
+  //return {success:"user  Added"};
+
+ return await login(user);
 }
 
 //register(users[0])
@@ -56,22 +57,22 @@ async function getAllUsers() {
 }
 
 getAllUsers();
-
-async function getUser(emailid) {
+/*
+async function getUser(user) {
   let sql = `
     SELECT * FROM users 
-      WHERE emailid = "${emailid}"
+      WHERE emailid = "${user.emailid}"
   `;
 
   return await con.query(sql);  
 }
-
+*/
 async function login(user) { 
   let cUser = await getUser(user); 
   
   if(!cUser[0]) throw Error("email not found");
   if(cUser[0].pwd !== user.pwd) throw Error("Password incorrect");
-  console.log(cUser[0]);
+  //console.log(cUser[0]);
 
   return cUser[0];
 }
@@ -122,7 +123,7 @@ async function getUser(user) {
 }
 
 
-module.exports = { getAllUsers, login, register,deleteUser,editUser};
+module.exports = { getAllUsers,login,register,deleteUser,editUser};
 
 
  
