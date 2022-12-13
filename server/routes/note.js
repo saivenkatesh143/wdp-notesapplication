@@ -8,7 +8,7 @@ router
 
 
 
-.get('/getnote', async (req, res) => {
+.post('/getnote', async (req, res) => {
     try {
       let noteget = await User.getnote(req.body);
       res.send(noteget)

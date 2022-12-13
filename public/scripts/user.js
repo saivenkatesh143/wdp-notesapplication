@@ -1,36 +1,4 @@
-// getUsers button 
-//let ptn=document.getElementById("btn-users")
-//if(ptn) ptn.addEventListener('click', getUsers)
-/*
-function getUsers() {
-     fetch("http://localhost:3000/users/")
-  .then((res)=> res.json())
-  .then((data) => console.log(data))
-  .catch((err)=> console.log(err))
-}*/
-
-
- //Fetch method implementation:
-async function fetchData(route = '', data = {}, methodType) {
-const response = await fetch(`http://localhost:3000${route}`, {
-      method: methodType, // *GET, POST, PUT, DELETE, etc.
-     mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    if(response.ok) {
-  return await response.json(); // parses JSON response into native JavaScript objects
-    } else {
-     throw await response.json();
-    }
- }
-  
+import {fetchData,setCurrentUser,getCurrentUser} from './main.js'
 
 
 
@@ -93,18 +61,28 @@ function clearregister(e){
     let lasname=document.getElementById('lname').value;
     let emailids=document.getElementById('emailid').value;
     let passwrd=document.getElementById('pwd').value;
-    let Repasswrd=document.getElementById('pwd1').value;
+    //let Repasswrd=document.getElementById('pwd1').value;
     
     
-const registration1=new Registration(firname,lasname,emailids,passwrd,Repasswrd)
+const registration1=new Registration(firname,lasname,emailids,passwrd)
+fetchData("/users/register", registration1, "POST")
+ .then((data) => {
+    setCurrentUser(data);
+     alert("registration success");
+   window.location.href = "note.html";
+ })
+ .catch((err) => {
+  // console.log(`Error!!! ${err.message}`)
+  alert("not done");
+ }) 
+
+/*
 console.log(`${firname}`)
 console.log(`${lasname}`)
 console.log(`${emailids}`)
 console.log(`${passwrd}`)
-console.log(`${Repasswrd}`)
 console.log(registration1)
-
-
+*/
 }
 
 
@@ -115,9 +93,10 @@ function clearregister1(e){
     let emailids=document.getElementById('emailid').value;
     let passwrd=document.getElementById('pwd').value;
     
-    const registration2=new Registration(null, null, emailids,passwrd,null)
+    const registration2=new Registration(null, null, emailids,passwrd)
    fetchData("/users/login", registration2, "POST")
     .then((data) => {
+        setCurrentUser(data);
         alert("Login success");
       window.location.href = "note.html";
     })
@@ -129,26 +108,48 @@ function clearregister1(e){
 }
 class RegistrationNote{
     constructor(textnote){
-        this.textnotes=textnote;
+        this.notecontent=textnote;
     }
     getTextnotes(){
-        return this.textnotes;
+        return this.notecontent;
     }
     setTextnotes(){
-        this.textnotes=textnote;
+        this.notecontent=textnote;
     }
 }
 
+let user=getCurrentUser()
 
 const notedata=document.getElementById("note-form1");
 if(notedata) notedata.addEventListener('submit',clearregister2)
 function clearregister2(e){
     e.preventDefault();
-    let textdata=document.getElementById('textnotes').value;
-    const registration1=new RegistrationNote(textdata)
-    console.log(`${textdata}`)
+let notedata2=document.getElementById("textnotes").value;
+    const registration10=new RegistrationNote(notedata2);
+    registration10.user_id = user.userID;
+    fetchData("/notes/createnote", registration10, "POST")
+    .then((data) => {
+        alert("note added");
+      window.location.href = "note.html";
+    })
+    .catch((err) => {
+     console.log(`Error!!! ${err.message}`)
+     alert("test");
+    }) 
+    //console.log(`${textdata}`)
 }
 
-function setCurrentUser(user){
-    localStorage.setItem('user',json.stringify(user));
+if(user&&notedata) getallnotes();
+
+function getallnotes(){
+    let textdata=document.getElementById('textnotes');
+    fetchData("/notes/getnote",user,"POST")
+    .then((data) => {
+ //console.log(data);
+ for(let i=0;i<data.length;i++){
+ textdata.value=data[i].notecontent;
+ }
+
+
+    })
 }

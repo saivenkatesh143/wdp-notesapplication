@@ -1,9 +1,11 @@
+/*
 const notedata = [
   {
       user_id: "1",
        notecontent:"test"
   },
 ];
+*/
 
 
 
@@ -35,7 +37,7 @@ getallnotes();
 async function getnote(note) {
   let sql = `
     SELECT * FROM notes 
-      WHERE user_id = "${note.user_id}"
+      WHERE user_id = ${note.userID}
   `;
 
   return await con.query(sql);  
@@ -49,18 +51,19 @@ async function getnote(note) {
 
 
 async function createnote(note){
+  //let data=  `select users.userID FROM users INNER JOIN notes ON users.userID=notes.user_id;`
+//  console.log(note)
+  let sql=`INSERT INTO notes (user_id, notecontent) 
+   VALUES (${note.user_id}, "${note.notecontent}")`;
 
-  let sql=`INSERT INTO notes (user_id,notecontent) VALUES ("${note.user_id}", "${note.notecontent}");`
-
-let data=await con.query(sql);
-
-
+  //let data=await con.query(sql);
+  await con.query(sql);
 return {success:"Note Added"};
 
 }
 
 async function deletenote(note){
-  let sql=`DELETE FROM notes where user_id="${note.user_id}"`;
+  let sql=`DELETE FROM notes where noteID="${note.noteID}"`;
 
   return await con.query(sql);
 }
@@ -76,7 +79,7 @@ async function editnote(note) {
   }
 
 
-createnote(notedata[0])
+//createnote(notedata[0])
 module.exports = {getallnotes,getnote,createnote,deletenote,editnote};
 
 

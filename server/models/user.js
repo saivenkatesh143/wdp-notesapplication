@@ -36,11 +36,11 @@ async function createTable() {
 createTable();
 
 async function register(user) {
-  let cUser = await getUser(user.emailid);
+  let cUser = await getUser(user);
   if(cUser.length > 0) throw Error("email already in use");
-
+  //console.log(user)
   const sql = `INSERT INTO users (firstname,lastname,emailid, pwd)
-    VALUES ("${user.firstname}", "${user.lastname}","${user.emailid}","${user.pwd}");
+    VALUES ("${user.firname}", "${user.lname}","${user.emailid}","${user.pwd}");
   `
   await con.query(sql);
   //return {success:"user  Added"};
