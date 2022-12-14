@@ -1,129 +1,123 @@
-// "database" as object literal
-
 const users = [
-    {
-        emailid: "saivenkateshsure@gmail.com",
-         pwd: "sudharani"
-    },
-    {
-        emailid: "saivenkateshsure1@gmail.com",
-         pwd: "sudharani1"
-      
-    },
-    {
-      firstname:"sai venkatesh",
-      lastname:"sure",
-      emailid: "saivenkateshsure2@gmail.com",
-       pwd: "sudharani2"
-    } 
-  ];
-  
+  {
+      emailid: "saivenkateshsure@gmail.com",
+       pwd: "sudharani"
+  },
+  {
+      emailid: "saivenkateshsure1@gmail.com",
+       pwd: "sudharani1"
+    
+  },
+  {
+    firstname:"sai venkatesh",
+    lastname:"sure",
+    emailid: "saivenkateshsure2@gmail.com",
+     pwd: "sudharani2"
+  } 
+];
 
 
-  const con = require("./db_connect");
+
+const con = require("./db_connect");
 
 async function createTable() {
-  let sql=`CREATE TABLE IF NOT EXISTS users (
-    userID INT NOT NULL AUTO_INCREMENT,
-    firstname VARCHAR(255) NOT NULL,
-    lastname VARCHAR(255) NOT NULL,
-    emailid VARCHAR(255) NOT NULL UNIQUE,
-    pwd VARCHAR(255) NOT NULL,
-    CONSTRAINT userPK PRIMARY KEY(userID)
-  ); `
-  await con.query(sql);
+let sql=`CREATE TABLE IF NOT EXISTS users (
+  userID INT NOT NULL AUTO_INCREMENT,
+  firstname VARCHAR(255) NOT NULL,
+  lastname VARCHAR(255) NOT NULL,
+  emailid VARCHAR(255) NOT NULL UNIQUE,
+  pwd VARCHAR(255) NOT NULL,
+  CONSTRAINT userPK PRIMARY KEY(userID)
+); `
+await con.query(sql);
 }
 createTable();
 
 async function register(user) {
-  let cUser = await getUser(user);
-  if(cUser.length > 0) throw Error("email already in use");
-  //console.log(user)
-  const sql = `INSERT INTO users (firstname,lastname,emailid, pwd)
-    VALUES ("${user.firname}", "${user.lname}","${user.emailid}","${user.pwd}");
-  `
-  await con.query(sql);
-  //return {success:"user  Added"};
+let cUser = await getUser(user);
+if(cUser.length > 0) throw Error("email already in use");
+//console.log(user)
+const sql = `INSERT INTO users (firstname,lastname,emailid, pwd)
+  VALUES ("${user.firname}", "${user.lname}","${user.emailid}","${user.pwd}");
+`
+await con.query(sql);
+//return {success:"user  Added"};
 
- return await login(user);
+return await login(user);
 }
 
 //register(users[0])
 
 async function getAllUsers() {
-   const sql = `SELECT * FROM users;`;
-   let users = await con.query(sql);
-   //console.log(users)
+ const sql = `SELECT * FROM users;`;
+ let users = await con.query(sql);
+ //console.log(users)
 }
 
 getAllUsers();
 /*
 async function getUser(user) {
-  let sql = `
-    SELECT * FROM users 
-      WHERE emailid = "${user.emailid}"
-  `;
-
-  return await con.query(sql);  
+let sql = `
+  SELECT * FROM users 
+    WHERE emailid = "${user.emailid}"
+`;
+return await con.query(sql);  
 }
 */
 async function login(user) { 
-  let cUser = await getUser(user); 
-  
-  if(!cUser[0]) throw Error("email not found");
-  if(cUser[0].pwd !== user.pwd) throw Error("Password incorrect");
-  //console.log(cUser[0]);
+let cUser = await getUser(user); 
 
-  return cUser[0];
+if(!cUser[0]) throw Error("email not found");
+if(cUser[0].pwd !== user.pwd) throw Error("Password incorrect");
+//console.log(cUser[0]);
+
+return cUser[0];
 }
- login(users[0]);
-  
-  function getAllUsers() {
-    return users; 
-  }
+
+function getAllUsers() {
+  return users; 
+}
 
 
 
 // Update User function
 
 async function editUser(user) {
-  let sql = `UPDATE users 
-    SET emailid = "${user.emailid}"
-    WHERE userID = ${user.userID}
-  `;
+let sql = `UPDATE users 
+  SET emailid = "${user.emailid}"
+  WHERE userID = ${user.userID}
+`;
 
-  await con.query(sql);
-  let updatedUser = await getUser(user);
-  return updatedUser[0];
+await con.query(sql);
+let updatedUser = await getUser(user);
+return updatedUser[0];
 }
 
 // Delete User function
 async function deleteUser(user) {
-  let sql = `DELETE FROM users
-    WHERE userID = ${user.userID}
-  `
-  await con.query(sql);
+let sql = `DELETE FROM users
+  WHERE userID = ${user.userID}
+`
+await con.query(sql);
 }
 // Useful Functions
 async function getUser(user) {
-  let sql;
+let sql;
 
-  if(user.userID) {
-    sql = `
-      SELECT * FROM users
-       WHERE userID = ${user.userID}
-    `
-  } else {
-    sql = `
-    SELECT * FROM users 
-      WHERE emailid = "${user.emailid}"
-  `;
-  }
-  return await con.query(sql);  
+if(user.userID) {
+  sql = `
+    SELECT * FROM users
+     WHERE userID = ${user.userID}
+  `
+} else {
+  sql = `
+  SELECT * FROM users 
+    WHERE emailid = "${user.emailid}"
+`;
+}
+return await con.query(sql);  
 }
 
 
 module.exports = { getAllUsers,login,register,deleteUser,editUser};
 
-
- 
